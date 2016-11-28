@@ -9,6 +9,14 @@
      #     when: "ansible_os_family == 'RedHat'"
      #}
      
+     #- {role: 
+     #     php-fpm, 
+     #     php_version: 'php-5.4.45',
+     #     port: 9004, 
+     #     args: '--with-mysql=mysqlnd',
+     #     when: "ansible_os_family == 'RedHat'"
+     #}
+
 # php 7
 #
      - {role: 
