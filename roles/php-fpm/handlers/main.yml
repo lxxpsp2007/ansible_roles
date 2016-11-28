@@ -1,0 +1,5 @@
+
+- name: restart php-fpm7
+  service: name={{php_version}}.service state=restarted
+- name: restart php-fpm6
+  service: name={{php_version}} state=restarted

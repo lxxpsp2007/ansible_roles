@@ -1,0 +1,12 @@
+- name: install pkg
+  yum: name={{item}} state=present
+  with_items:
+    - make
+    - gcc
+    - gcc-c++
+    - openssl-devel
+    - zlib-devel
+    - lsof
+    - patch
+    - pcre
+    - pcre-devel

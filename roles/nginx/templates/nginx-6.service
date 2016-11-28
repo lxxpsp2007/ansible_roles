@@ -1,0 +1,48 @@
+#!/bin/bash
+# chkconfig: - 75 05
+
+. /etc/init.d/functions
+prefix="/usr/local/{{nginx_version}}"
+
+pidfile="/usr/local/{{nginx_version}}/logs/nginx.pid"
+
+IF () {
+     action "php-fpm  $1 ............" /bin/true
+}
+
+stop () {
+        echo -n $"Stopping $prog: "
+        killproc -p ${pidfile} ${prefix}/sbin/nginx
+        RETVAL=$?
+        echo
+        if [ $RETVAL -eq 0 ] ; then
+           rm -f ${pidfile}  #${lockfile} 
+        fi
+}
+
+
+reload () {
+        ${prefix}/sbin/nginx -s reload & \
+                IF reload
+}
+
+start () {
+        ${prefix}/sbin/nginx & \
+                IF reload
+}
+
+
+case $1 in
+    start)
+        start ;;
+    restart)
+        stop
+        start
+        ;;
+    stop)
+        stop ;;
+    reload)
+        reload ;;
+    *)
+        echo "useing (start|stop|restart|reload)"
+esac

@@ -1,0 +1,9 @@
+- name: install MySQL
+  yum: name={{ item }} state=present
+  with_items: "{{ db_pk_6 }}"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == 6
+
+- name: config file
+  template: src=my-large.cnf dest=/etc/my.cnf
+  notify:
+    - restart mysqld

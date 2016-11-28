@@ -1,0 +1,50 @@
+---
+#------- 检测php是否存在
+- name: check {{php_version}} php_bin
+  command: ls /usr/local/{{php_version}}/bin/php
+  register: bin
+  ignore_errors: True
+
+- include: php-pkg-{{ansible_distribution_major_version}}.yml
+  when: bin|failed
+
+- name: unzip {{php_version}} files
+  unarchive: src="{{php_version}}/{{php_version}}.tar.gz" dest=/opt/
+  when: bin|failed
+
+- name: compile {{php_version}}
+  script: '{{ansible_distribution_major_version}}.sh {{php_version}} {{args}}'
+  when: bin|failed
+
+#------- 检测配置是否存在
+- name: check {{php_version}} php-fpm.conf
+  command: ls /usr/local/{{php_version}}/etc/php-fpm.conf
+  register: fpm
+  ignore_errors: True
+
+- name: php-fpm.conf
+  template: src=php-fpm.conf dest=/usr/local/{{php_version}}/etc/
+  when: fpm|failed
+
+#-------6 7 启动脚本
+- name: CentOS 7 start script 
+  template: src=php-fpm-7.service dest=/lib/systemd/system/{{php_version}}.service
+  when: ansible_distribution_major_version == '7'
+
+- name: CentOS 6 start script 
+  template: src=php-fpm-6.service dest=/etc/init.d/{{php_version}} mode=0755
+  when: ansible_distribution_major_version == '6'
+
+#-------启动服务
+- name: start php-fpm
+  service: name={{php_version}} state=restarted enabled=yes
+
+#-------删除编译目录
+- name: check compile {{php_version}} dir
+  command: ls /opt/{{php_version}}
+  register: dir
+  ignore_errors: True
+
+- name: del {{php_version}} compile dir
+  file: dest=/opt/{{php_version}} state=absent
+  when: dir|success

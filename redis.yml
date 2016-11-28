@@ -1,0 +1,11 @@
+---
+  - hosts: test
+    roles:
+      - redis
+    vars:
+      - redis_instances:
+        - owner: nobody
+          group: nobody
+          home: /home/foo
+          version: 3.0.7
+          config: []

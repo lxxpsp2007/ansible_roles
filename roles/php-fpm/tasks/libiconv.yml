@@ -1,0 +1,20 @@
+---
+- name: check so
+  command: ls /usr/local/"{{software_name}}"/lib/libiconv.so.2
+  register: so
+  ignore_errors: True
+
+- name:  unzip files
+  unarchive: src="{{software_name}}/{{software_name}}.tar.gz" dest=/opt/
+  when: so|failed
+
+- name: cp stdio.in.h
+  copy: src="{{software_name}}/stdio.in.h" dest="/opt/{{software_name}}/srclib/"
+  when:  ansible_distribution_major_version == '7' and so|failed
+
+- name: compile "{{software_name}}"
+  script: compile.sh "{{software_name}}"
+  when: so|failed
+
+- name: del compile dir
+  file: dest=/opt/{{software_name}} state=absent

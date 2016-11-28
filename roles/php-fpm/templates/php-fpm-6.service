@@ -1,0 +1,49 @@
+#!/bin/bash
+# chkconfig: - 75 05
+
+. /etc/init.d/functions
+prefix="/usr/local/{{php_version}}"
+CONF=${prefix}/etc
+
+pidfile=${prefix}/var/run/php-fpm.pid
+
+IF () {
+ action "php-fpm  $1 ............" /bin/true
+}
+
+stop () {
+        echo -n $"Stopping $prog: "
+        killproc -p ${pidfile} ${prefix}/sbin/php-fpm
+        RETVAL=$?
+        echo
+        if [ $RETVAL -eq 0 ] ; then
+           rm -f ${pidfile}  #${lockfile} 
+        fi
+}
+
+
+reload () {
+        kill -SIGUSR2  `cat ${prefix}/var/run/php-fpm.pid`  && \
+        IF reload
+}
+
+start () {
+        ${prefix}/sbin/php-fpm -c ${CONF}/php.ini -y ${CONF}/php-fpm.conf && \
+        IF start
+}
+
+
+case $1 in
+    start)
+        start ;;
+    restart)
+        stop
+        start
+        ;;
+    stop)
+        stop ;;
+    reload)
+        reload ;;
+    *)
+        echo "useing (start|stop|restart|reload)"
+esac

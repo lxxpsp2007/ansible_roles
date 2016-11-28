@@ -1,0 +1,16 @@
+---
+- hosts: test
+  roles:
+    #- { role:
+    #      nginx,
+    #      nginx_version: 'tengine-2.1.2',
+    #      args: '--with-http_upstream_check_module --with-http_concat_module',
+    #      when: "ansible_os_family == 'RedHat'"
+    #}
+
+    - { role:
+          nginx,
+          nginx_version: 'nginx-1.10.2',
+          args: '--with-stream',
+          when: "ansible_os_family == 'RedHat'"
+      }

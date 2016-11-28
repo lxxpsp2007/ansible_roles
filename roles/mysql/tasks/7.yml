@@ -1,0 +1,11 @@
+---
+- name: install Mariadb
+  yum: name={{ item }} state=present
+  with_items: "{{ db_pk_7 }}"
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == 7
+
+
+- name: config file
+  template: src=my-large.cnf dest=/etc/my.cnf
+  notify:
+    - restart mariadb

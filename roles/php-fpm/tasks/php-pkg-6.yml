@@ -1,0 +1,26 @@
+
+- name: install php pkg
+  yum: name={{item}} state=present
+  with_items:
+    - make
+    - gcc
+    - gcc-c++
+    - autoconf
+    - zlib
+    - libjpeg
+    - freetype
+    - libpng
+    - gd
+    - curl
+    - zlib-devel
+    - libxml2-devel
+    - libjpeg-devel
+    - openssl-devel
+    - libtool-ltdl
+    - freetype-devel
+    - libpng-devel
+    - gd-devel
+    - curl-devel
+    - libxslt-devel
+    - libtidy-devel
+    - readline-devel

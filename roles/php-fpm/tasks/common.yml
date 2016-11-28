@@ -1,0 +1,16 @@
+---
+- name: check file
+  command: ls {{so_file}}
+  register: so
+  ignore_errors: True
+
+- name:  unzip files
+  unarchive: src="{{software_name}}/{{software_name}}.tar.gz" dest=/opt/
+  when: so|failed
+
+- name: compile "{{software_name}}"
+  script: compile.sh "{{software_name}}"
+  when: so|failed
+
+- name: del compile dir
+  file: dest=/opt/{{software_name}} state=absent
