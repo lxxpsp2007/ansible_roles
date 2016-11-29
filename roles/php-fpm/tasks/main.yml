@@ -1,6 +1,7 @@
 
 - include: libiconv.yml software_name=libiconv-1.14
 
+- include: common.yml software_name=libmemcached-1.0.18 so_file=/usr/local/libmemcached-1.0.18/lib/libmemcached.so.11.0.0
 - include: common.yml software_name=libmcrypt-2.5.8 so_file=/usr/local/libmcrypt-2.5.8/lib/libmcrypt.so.4
 
 - include: php-install.yml

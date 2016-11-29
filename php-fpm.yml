@@ -1,13 +1,13 @@
 ---
 - hosts: test
   roles:
-     #- {role: 
-     #     php-fpm, 
-     #     php_version: 'php-5.6.28',
-     #     port: 9006, 
-     #     args: '--with-mysql=mysqlnd',
-     #     when: "ansible_os_family == 'RedHat'"
-     #}
+     - {role: 
+          php-fpm, 
+          php_version: 'php-5.6.28',
+          port: 9006, 
+          args: '--with-mysql=mysqlnd',
+          when: "ansible_os_family == 'RedHat'"
+     }
      
      #- {role: 
      #     php-fpm, 
@@ -19,10 +19,10 @@
 
 # php 7
 #
-     - {role: 
-          php-fpm,
-          php_version: 'php-7.0.12',
-          port: 9007, 
-          args: '--enable-opcache',
-          when: "ansible_os_family == 'RedHat'"
-       }
+#     - {role: 
+#          php-fpm,
+#          php_version: 'php-7.0.12',
+#          port: 9007, 
+#          args: '--enable-opcache',
+#          when: "ansible_os_family == 'RedHat'"
+#       }
