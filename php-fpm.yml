@@ -1,6 +1,9 @@
 ---
 - hosts: test
   roles:
+
+#php5.6
+#
      - {role: 
           php-fpm, 
           php_version: 'php-5.6.28',
@@ -9,6 +12,7 @@
           when: "ansible_os_family == 'RedHat'"
      }
      
+#php 5.4
      #- {role: 
      #     php-fpm, 
      #     php_version: 'php-5.4.45',
