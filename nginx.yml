@@ -1,5 +1,5 @@
 ---
-- hosts: test
+- hosts: t
   roles:
     #- { role:
     #      nginx,

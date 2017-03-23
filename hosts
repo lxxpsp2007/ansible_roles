@@ -42,10 +42,11 @@
 
 ## db-[99:101]-node.example.com
 [t]
-c151
+#win7 ansible_python_interpreter=/cygdrive/d/Python27/python.exe ansible_connection=ssh
+localhost
+web3 ansible_ssh_pass=123123
+#c151
 #c161
 
 [test:children]
 t
-
-

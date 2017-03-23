@@ -21,6 +21,7 @@ cd /opt/$1/
 --with-curl \
 --with-gd \
 --with-fpm-systemd \
+--with-mysql-sock=/var/lib/mysql/mysql.sock \
 --with-tidy $2
 
 make -j2 && make install

@@ -9,6 +9,7 @@ cd /opt/$1/
 --with-mcrypt=/usr/local/libmcrypt-2.5.8 \
 --with-mysqli=mysqlnd \
 --with-pdo-mysql \
+--with-mysql-sock=/var/lib/mysql/mysql.sock \
 --with-freetype-dir \
 --enable-mbstring \
 --with-readline \
