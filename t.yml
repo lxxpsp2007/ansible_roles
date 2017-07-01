@@ -1,0 +1,7 @@
+- hosts: localhost
+  tasks:
+    - name: cmd
+      command: '{{ item }}'
+      with_items:
+        - echo 13
+        - mkdir -p /tmp/123

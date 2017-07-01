@@ -13,20 +13,20 @@
      #}
      
 #php 5.4
-     - {role: 
-          php-fpm, 
-          php_version: 'php-5.4.45',
-          port: 9004, 
-          args: '--with-mysql=mysqlnd',
-          when: "ansible_os_family == 'RedHat'"
-     }
+#- {role: 
+#          php-fpm, 
+#          php_version: 'php-5.4.45',
+#          port: 9004, 
+#          args: '--with-mysql=mysqlnd',
+#          when: "ansible_os_family == 'RedHat'"
+#     }
 
 # php 7
-#
-#     - {role: 
-#          php-fpm,
-#          php_version: 'php-7.0.12',
-#          port: 9007, 
-#          args: '--enable-opcache',
-#          when: "ansible_os_family == 'RedHat'"
-#       }
+
+     - {role: 
+          php-fpm,
+          php_version: 'php-7.0.17',
+          port: 9071, 
+          args: '--enable-opcache',
+          when: "ansible_os_family == 'RedHat'"
+       }

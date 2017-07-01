@@ -5,14 +5,27 @@
   register: bin
   ignore_errors: True
 
-- block:
-  - include: nginx-pkg.yml
-  - unarchive: src="{{nginx_version}}.tar.gz" dest=/opt/
-  - script: compile-nginx.sh "{{nginx_version}} {{args}}"
+- include: nginx-pkg.yml
   when: bin|failed
 
+- name: unzip {{nginx_version}} files
+  unarchive: src="{{nginx_version}}.tar.gz" dest=/opt/
+  when: bin|failed
 
+- name: compile {{nginx_version}}
+  script: compile-nginx.sh "{{nginx_version}} {{args}}"
+  when: bin|failed
 
+#------- 检测配置是否存在
+#- name: check {{nginx_version}} php-fpm.conf
+#  command: ls /usr/local/{{nginx_version}}/etc/php-fpm.conf
+#  register: fpm
+#  ignore_errors: True
+#
+#- name: php-fpm.conf
+#  template: src=php-fpm.conf dest=/usr/local/{{nginx_version}}/etc/
+#  when: fpm|failed
+#
 #-------6 7 启动脚本
 - name: CentOS 7 systemd script 
   template: src=nginx-7.service dest=/lib/systemd/system/{{nginx_version}}.service

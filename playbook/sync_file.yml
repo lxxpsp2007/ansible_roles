@@ -1,0 +1,9 @@
+- hosts: t
+  gather_facts: no
+  serial: 10
+  tasks:
+    - name: sync file
+      copy: src=/opt/{{item}}  dest=/tmp/test/{{item}}
+      with_file:
+        - /opt/vars.txt
+      #with_items: "{{ files.stdout_lines }}"

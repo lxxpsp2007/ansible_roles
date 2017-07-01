@@ -1,5 +1,5 @@
 ---
-- hosts: t
+- hosts: 192.168.1.151
   roles:
     #- { role:
     #      nginx,

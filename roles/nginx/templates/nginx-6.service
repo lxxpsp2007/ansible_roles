@@ -7,7 +7,7 @@ prefix="/usr/local/{{nginx_version}}"
 pidfile="/usr/local/{{nginx_version}}/logs/nginx.pid"
 
 IF () {
-     action "php-fpm  $1 ............" /bin/true
+     action "nginx  $1 ............" /bin/true
 }
 
 stop () {
