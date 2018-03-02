@@ -1,0 +1,12 @@
+- block:
+  - name: package copy
+    copy: src={{pip_package}} dest=/opt/{{pip_package}}
+  - name: yum install python-setuptools
+    yum: name=python-setuptools state=installed
+  - name: install pip
+    shell: easy_install /opt/{{pip_package}}
+  - name: conf file dir
+    file: dest=~/.pip state=directory
+  - name: conf file
+    template: src=pip.conf dest=~/.pip/pip.conf
+  when: ansible_os_family == "RedHat"
