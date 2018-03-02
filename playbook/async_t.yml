@@ -1,0 +1,7 @@
+- hosts: t
+  gather_facts: no
+  #serial: 5
+  tasks:
+    - command: sleep 15
+      async: 30
+      poll: 5

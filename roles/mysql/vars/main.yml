@@ -1,6 +1,7 @@
 db_pk_7:
   - mariadb-server
   - mariadb-devel
+
 db_pk_6:
   - mysql-server
   - mysql-devel

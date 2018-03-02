@@ -1,0 +1,6 @@
+- hosts: t
+  gather_facts: no
+  serial: 10
+  tasks:
+    - name: bt
+      shell: '/usr/local/BitTornado-python2.7/btdownloadheadless.py /usr/local/BitTornado-python2.7/docker.io_centos7-img.gz.torrent --saveas /tmp/docker.gz &'
