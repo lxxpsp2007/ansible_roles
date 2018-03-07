@@ -3,10 +3,10 @@
     copy: src={{zabbix_agent_package}} dest=/opt/{{zabbix_agent_package}}
   - name: yum install  
     yum: name=/opt/{{zabbix_agent_package}} state=installed
-  - name: python module
-    pip: name=psutil state=latest
   - name: conf file
     template: src=zabbix_agentd.conf dest=/etc/zabbix/zabbix_agentd.conf
     notify:
       - restart zabbix-agent
-  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
+  #- name: python module
+  #  pip: name=psutil state=latest
+  when: ansible_os_family == "RedHat" and ansible_userspace_architecture == "x86_64"

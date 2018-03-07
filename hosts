@@ -46,8 +46,9 @@
 192.168.1.248
 192.168.1.152
 192.168.1.151
+192.168.1.163
 192.168.0.178
-192.168.0.234
+192.168.1.234
 #win7 ansible_python_interpreter=/cygdrive/d/Python27/python.exe ansible_connection=ssh
 #localhost
 #web3 ansible_ssh_pass=123123

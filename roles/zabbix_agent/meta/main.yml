@@ -1,2 +1,2 @@
-dependencies:
-  - {role: pip}
+#dependencies:
+#  - {role: pip}
