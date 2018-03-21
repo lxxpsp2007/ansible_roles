@@ -8,8 +8,11 @@ cd /opt/$1/
 --with-iconv=/usr/local/libiconv-1.14 \
 --with-mcrypt=/usr/local/libmcrypt-2.5.8 \
 --with-mysqli=mysqlnd \
+--with-mysql=mysqlnd \
 --with-pdo-mysql \
+--with-mysql-sock=/var/lib/mysql/mysql.sock \
 --with-freetype-dir \
+--enable-bcmath \
 --enable-mbstring \
 --with-readline \
 --enable-sockets \
@@ -20,9 +23,10 @@ cd /opt/$1/
 --with-zlib \
 --with-curl \
 --with-gd \
+--enable-opcache \
+--with-gettext \
 --with-fpm-systemd \
---with-mysql-sock=/var/lib/mysql/mysql.sock \
---with-tidy $2
+--with-tidy "$2"
 
 make -j2 && make install
 cp php.ini-production /usr/local/$1/etc/php.ini

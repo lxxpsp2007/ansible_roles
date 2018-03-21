@@ -1,16 +1,17 @@
 ---
-- hosts: t
+- hosts: 192.168.1.248
   roles:
 
 #php5.6
 #
-     #- {role: 
-     #     php-fpm, 
-     #     php_version: 'php-5.6.28',
-     #     port: 9006, 
-     #     args: '--with-mysql=mysqlnd',
-     #     when: "ansible_os_family == 'RedHat'"
-     #}
+     - {role: 
+          php-fpm, 
+          php_version: 'php-5.6.28',
+          port: 9628, 
+          args: ,
+          #args: "--enable-maintainer-zts",
+          when: "ansible_os_family == 'RedHat'"
+     }
      
 #php 5.4
 #- {role: 
@@ -23,10 +24,10 @@
 
 # php 7
 
-     - {role: 
-          php-fpm,
-          php_version: 'php-7.0.17',
-          port: 9071, 
-          args: '--enable-opcache',
-          when: "ansible_os_family == 'RedHat'"
-       }
+          #     - {role: 
+          #          php-fpm,
+          #          php_version: 'php-7.0.17',
+          #          port: 9071, 
+          #          args: '--enable-opcache',
+          #          when: "ansible_os_family == 'RedHat'"
+          #       }

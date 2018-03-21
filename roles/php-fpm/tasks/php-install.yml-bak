@@ -5,15 +5,15 @@
   register: bin
   ignore_errors: True
 
-- block:
-  - include: php-pkg-{{ansible_distribution_major_version}}.yml
+- include: php-pkg-{{ansible_distribution_major_version}}.yml
+  when: bin|failed
 
-  - name: unzip {{php_version}} files
-    unarchive: src="{{php_version}}/{{php_version}}.tar.gz" dest=/opt/
+- name: unzip {{php_version}} files
+  unarchive: src="{{php_version}}/{{php_version}}.tar.gz" dest=/opt/
+  when: bin|failed
 
-  - name: compile {{php_version}}
-    script: '{{ansible_distribution_major_version}}.sh {{php_version}} {{args}}'
-
+- name: compile {{php_version}}
+  script: '{{ansible_distribution_major_version}}.sh {{php_version}} {{args}}'
   when: bin|failed
 
 #------- 检测配置是否存在
